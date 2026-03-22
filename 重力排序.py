@@ -32,8 +32,8 @@ def yh_gravity_sort(arr: List[float | int]) -> Union[List[int], List[float]]:
             right.append(x)
     if not left or not right: # 既然均值切不动，说明数据分布极度偏斜。
         pivot:int | float = arr[len(arr) // 2]
-        return gravity_sort([x for x in arr if x <= pivot]) + gravity_sort([x for x in arr if x > pivot])
-    return gravity_sort(left) + gravity_sort(right)
+        return yh_gravity_sort([x for x in arr if x <= pivot]) + yh_gravity_sort([x for x in arr if x > pivot])
+    return yh_gravity_sort(left) + yh_gravity_sort(right)
 
 
 def quick_sort(arr: List[float | int]) -> Union[List[int], List[float]]:
