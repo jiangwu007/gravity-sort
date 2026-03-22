@@ -1,7 +1,7 @@
 # GravitySort – 世界上最短的 O(n log n) 排序算法
 
 **GravitySort** 是一个全新的排序算法，它用**统计重心**代替传统快排的离散样本，实现了递归树的确定性平衡。在 Python 中仅需 **15 行核心代码**，却能在随机数据上比手写快排快 **5~6 倍**，在重复数据上快 **4 倍以上**，在已排序数据上仍有 **1.2 倍** 优势。
-
+> Unlike traditional comparison sorts, YH-Gravity uses Global Statistical Centroids to reduce data entropy. It is not just a sort; it's an Entropy Reduction Engine that prepares data for Timsort.
 ---
 
 ## ✨ 为什么是“重力”？
