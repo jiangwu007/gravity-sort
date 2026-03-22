@@ -44,8 +44,9 @@ def gravity_sort(arr):
 | 双峰分布 | 0.74s | 1.75s | **2.4x** |
 | 已排序 | 1.38s | 1.60s | **1.2x** |
 | 大量重复 | 0.33s | 1.36s | **4.1x** |
- ![GravitySort vs QuickSort](gravity_vs_quick.png)
 > 在均匀随机数据上，重力排序比快排快 **5 倍以上**；在重复数据上快 **4 倍**；即使是在已排序数据上仍然略快。
+> 
+>  ![GravitySort vs QuickSort](gravity_vs_quick.png)
 ---
 
 ## 🧠 核心思想深度解析
