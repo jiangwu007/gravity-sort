@@ -19,21 +19,25 @@ def gravity_sort(arr: List[float | int]) -> Union[List[int], List[float]]:
     return gravity_sort(left) + gravity_sort(right)
 
 
-def yh_gravity_sort(arr: List[float | int]) -> Union[List[int], List[float]]:
-    '''重力排序,纯python'''
-    if len(arr) <= 1: return arr
-    alpha:float = sum(arr) / len(arr)
-    left:List[int | float] = []
-    right:List[int | float] = []
+def yh_gravity_sort(arr: List[float | int]) -> List[float | int]:
+    '''
+    由于第一版发贴子时，没注意写出微小的bug，所以改成这样了，虽然速度变慢了一些，
+    但依然超过快排，这个时间依然符合我的数学推理，发表的贴子我不想改了，希望有缘人能看见github真实代码'''
+    if len(arr) <= 1:  return arr
+    alpha = sum(arr) / len(arr)
+    left, right = [], []
     for x in arr:
         if x < alpha:
             left.append(x)
         else:
             right.append(x)
-    if not left or not right: # 既然均值切不动，说明数据分布极度偏斜。
-        pivot:int | float = arr[len(arr) // 2]
-        return gravity_sort([x for x in arr if x <= pivot]) + gravity_sort([x for x in arr if x > pivot])
-    return gravity_sort(left) + gravity_sort(right)
+    if not left or not right: # 如果 left 或 right 有一个为空，说明 alpha 没能把数据切开（全是重复值或精度问题）
+        pivot = arr[len(arr) // 2]
+        if not (m_part := [x for x in arr if x == pivot]):
+            return m_part
+        elif not(l_part := [x for x in arr if x < pivot]) and not(r_part := [x for x in arr if x > pivot]):
+            return yh_gravity_sort(l_part) + m_part + yh_gravity_sort(r_part)
+    return yh_gravity_sort(left) + yh_gravity_sort(right)
 
 
 def quick_sort(arr: List[float | int]) -> Union[List[int], List[float]]:
